@@ -1071,12 +1071,14 @@
        function playerAttack(skillIndex) {
            var playerSkill = skill[selectedPokemon.skills[skillIndex]];
            var damage;
+           var random_factor = Math.random() * (0.4) + 0.8;
            console.log(playerSkill.types);
            var parm = typesparm(playerSkill.types, computerPokemon.types);
            damage = (playerSkill.power * 0.4 + selectedPokemon.attack) * parm - computerPokemon.defense;
            if (damage < 0) {
                damage = selectedPokemon.attack * 0.3;
            }
+           damage *= random_factor;
            decreaseHealth('player2Health', damage);
            playerTurn=false;
            if (computerHealthBar.value <= 0) {
@@ -1100,11 +1102,13 @@
            var computerSkill = skill[computerPokemon.skills[randomSkillIndex]];
            var damage;
            var parm = typesparm(computerSkill.types, selectedPokemon.types);
+           var random_factor = Math.random() * (0.4) + 0.8;
            damage = (computerSkill.power * 0.4 + computerPokemon.attack) * parm - selectedPokemon.defense;
            typesparm(computerSkill.types, selectedPokemon.types);
            if (damage < 0) {
                damage = computerPokemon.attack * 0.3;
            }
+           damage *= random_factor;
            decreaseHealth('player1Health', damage);
            playerTurn=true;
            if (playerHealthBar.value <= 0) {
